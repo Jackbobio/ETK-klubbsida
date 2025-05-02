@@ -1,12 +1,14 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const newsRoutes = require('./routes/news');
 require('dotenv').config();
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use('/api/news', newsRoutes);
 
 
 mongoose.connect(process.env.MONGO_URI)
