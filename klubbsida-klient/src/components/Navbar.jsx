@@ -10,7 +10,7 @@ export default function Navbar() {
             <Link to="/About">Om oss</Link>
             <Link to="/Membership">Medlemskap</Link>
         </nav>
-        <h3>Kontakta oss: <a class="hover:underline"href="tel:123-456 78 90">123-456 78 90</a></h3>
+        <button class="bg-jakob p-2 cursor-pointer">Logga in</button>
         </div>
         </>
     )
