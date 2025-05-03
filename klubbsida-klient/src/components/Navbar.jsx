@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { AuthButtons } from "./Authbuttons";
 
 export default function Navbar() {
     return (
@@ -10,7 +11,7 @@ export default function Navbar() {
             <Link to="/About">Om oss</Link>
             <Link to="/Membership">Medlemskap</Link>
         </nav>
-        <button class="bg-jakob p-2 cursor-pointer">Logga in</button>
+        <AuthButtons />
         </div>
         </>
     )
