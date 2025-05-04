@@ -7,11 +7,11 @@ const jwtCheck = jwt({
   secret: jwksRsa.expressJwtSecret({
     cache: true,
     rateLimit: true,
-    jwksUri: 'https://localhost:5173/.well-known/jwks.json'
+    jwksUri: 'dev-nwurgok5vi3aouh3.eu.auth0.com/.well-known/jwks.json'
   }),
   audience: 'klubbsida.onrender.com/api',
-  issuer: 'https://localhost:5173/',
-  algorithms: ['HS256'],
+  issuer: 'dev-nwurgok5vi3aouh3.eu.auth0.com',
+  algorithms: ['RS256'],
 });
 
 function checkAdminRole(req, res, next) {
@@ -27,3 +27,5 @@ function checkAdminRole(req, res, next) {
 router.get('/', jwtCheck, checkAdminRole, (req, res) => {
     res.json({ message: 'Hello from the backend!' });
 });
+
+module.exports = router;
