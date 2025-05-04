@@ -1,6 +1,18 @@
 const express = require('express');
 const router = express.Router();
-const { checkJwt } = require('../middleware/jwtCheck');
+const { expressjwt: jwt } = require('express-jwt');
+const jwksRsa = require('jwks-rsa');
+
+const jwtCheck = jwt({
+  secret: jwksRsa.expressJwtSecret({
+    cache: true,
+    rateLimit: true,
+    jwksUri: 'https://localhost:5173/.well-known/jwks.json'
+  }),
+  audience: 'klubbsida.onrender.com/api',
+  issuer: 'https://localhost:5173/',
+  algorithms: ['HS256'],
+});
 
 function checkAdminRole(req, res, next) {
     const roles = req.user["https://localhost:5173/roles"] || [];
@@ -12,6 +24,6 @@ function checkAdminRole(req, res, next) {
     
 }
 
-router.get('/', checkJwt, checkAdminRole, (req, res) => {
+router.get('/', jwtCheck, checkAdminRole, (req, res) => {
     res.json({ message: 'Hello from the backend!' });
 });
