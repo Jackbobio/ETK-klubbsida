@@ -1,4 +1,7 @@
+import { Navigate, useNavigate } from "react-router-dom";
+
 export default function  Home() {
+
     return (
         <>
     <main class="font-bodoni">
@@ -7,7 +10,9 @@ export default function  Home() {
             <div class="text-center relative z-10 text-white p-4 flex flex-col justify-center items-center h-full">
                 <h1 class="text-4xl md:text-7xl font-bold mb-4">Ellagårds Tennisklubb</h1>
                 <h3 class="text-xl md:text-3xl">-Play tennis, change your life</h3>
-                <button class="bg-amber-400 text-gray-800 p-4 mt-8 hover:cursor-pointer hover:bg-amber-300">BOKA BANA</button>
+                <button class="bg-amber-400 text-gray-800 p-4 mt-8 hover:cursor-pointer hover:bg-amber-300" 
+                onClick={() => window.location.href="https://www.matchi.se/facilities/ellagardstk"}>BOKA BANA
+                </button>
             </div>
         </div>
         <div class="bg-gray-800 p-10 text-center flex flex-col justify-center items-center">

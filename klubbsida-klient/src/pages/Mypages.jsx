@@ -1,8 +1,18 @@
-export default function Mypages() {
+import { useAuth0 } from "@auth0/auth0-react"
+import Errorpanel from "../components/Errorpanel";
+
+export default function Minasidor() {
+    const { user, isAuthenticated } = useAuth0();
+
+    if (!isAuthenticated) return <Errorpanel error={{ message: "Du är inte inloggad!" }} />
+
+    const roles = user["https://localhost:5173/roles"] || [];
+    const isAdmin = roles.includes("Administrator");
+
     return (
-        <div className="mypages" class="font-bodoni">
-            <h1 class="text-3xl text-center">My Pages</h1>
-            <p class="text-center">Welcome to your personal pages!</p>
+        <div>
+            {isAdmin && <Adminpanel />}
+            <Playerpanel />
         </div>
     )
 }
