@@ -1,3 +1,5 @@
+import React from 'react';
+
 export default function Errorpanel({ error }) {
     return (
         <div className="flex flex-col items-center justify-center h-screen bg-gray-100">

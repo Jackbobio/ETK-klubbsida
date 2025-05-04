@@ -5,7 +5,7 @@
 import { useAuth0 } from '@auth0/auth0-react';
 
 // Base URL for API requests
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+const API_URL = import.meta.env.VITE_API_URL || 'https://klubbsida.onrender.com/api';
 
 /**
  * Custom hook for making authenticated API requests

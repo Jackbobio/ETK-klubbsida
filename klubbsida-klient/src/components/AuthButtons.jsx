@@ -7,10 +7,10 @@ export const AuthButtons = () => {
     return (
       <>
         {!isAuthenticated && (
-          <button class="bg-jakob p-2 cursor-pointer" onClick={() => loginWithRedirect()}>Logga In</button>
+          <button className="bg-jakob p-2 cursor-pointer" onClick={() => loginWithRedirect()}>Logga In</button>
         )}
         {isAuthenticated && (
-          <button class="bg-jakob p-2 cursor-pointer" onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>
+          <button className="bg-jakob p-2 cursor-pointer" onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>
             Logga Ut
           </button>
         )}

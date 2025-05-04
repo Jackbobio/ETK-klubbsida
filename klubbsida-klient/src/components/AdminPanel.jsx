@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState, useEffect } from 'react';
 import { useApi } from '../utils/api';
 import { useAuth0 } from '@auth0/auth0-react';

@@ -1,3 +1,4 @@
+import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Homepage from './pages/Homepage'
 import About from './pages/Aboutus'
@@ -15,14 +16,14 @@ function App() {
     <>
       <Router>
         <Navbar />
-        <div class="min-h-screen flex flex-col">
+        <div className="min-h-screen flex flex-col">
         <Routes>
           <Route path="/" element={<Homepage />}></Route>
           <Route path="/Omoss" element={<About />}></Route>
           <Route path="/Medlemskap" element={<Membership />}></Route>     
           <Route path="/Minasidor" element={<Minasidor />}></Route>   
           <Route path="/Nyheter" element={<News />}></Route>
-          <Route path="*" element={<h1 class="text-4xl p-5">404: Not Found</h1>}></Route>   
+          <Route path="*" element={<h1 className="text-4xl p-5">404: Not Found</h1>}></Route>   
         </Routes>
         </div>
         <Footer />
