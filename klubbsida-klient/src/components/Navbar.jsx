@@ -19,6 +19,7 @@ export default function Navbar() {
             <div class="flex flex-row justify-between items-center space-x-20">
             <nav class="flex space-x-15 col-span-2">
                 <Link to="/">Hem</Link>
+                <Link to="/Nyheter">Nyheter</Link>
                 <Link to="/Omoss">Om oss</Link>
                 <Link to="/Medlemskap">Medlemskap</Link>      
             </nav>
