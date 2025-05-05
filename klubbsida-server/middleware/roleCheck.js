@@ -16,13 +16,11 @@ function checkAdminRole(req, res, next) {
 
     // Extract roles from the auth object
     // The namespace should match what's configured in Auth0
-    const namespace = "https://localhost:5173/";
-    const roles = req.auth.payload[namespace + 'roles'] || [];
     
-    console.log("User roles:", roles);
+    //console.log("User roles:", roles);
     
     // Check if the user has the Administrator role
-    if (roles.includes("Administrator")) {
+    if (req.auth.permissions.includes('admin:all')) {
         next();
     } else {
         return res.status(403).json({
