@@ -14,7 +14,7 @@ const jwtCheck = jwt({
     rateLimit: true,
     jwksUri: 'https://dev-nwurgok5vi3aouh3.eu.auth0.com/.well-known/jwks.json'
   }),
-  audience: 'klubbsida.onrender.com/api',
+  audience: ['klubbsida.onrender.com/api', 'https://dev-nwurgok5vi3aouh3.eu.auth0.com/userinfo'], // <-- this should match ONE of the aud fields
   issuer: 'https://dev-nwurgok5vi3aouh3.eu.auth0.com/',
   algorithms: ['RS256'],
 });
