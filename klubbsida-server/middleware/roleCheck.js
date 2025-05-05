@@ -16,8 +16,8 @@ function checkAdminRole(req, res, next) {
 
     // Extract roles from the auth object
     // The namespace should match what's configured in Auth0
-    const namespace = "https://klubbsida.onrender.com/roles";
-    const roles = req.auth[namespace] || [];
+    const namespace = "https://localhost:5173/roles";
+    const roles = req.auth.payload[namespace] || [];
     
     console.log("User roles:", roles);
     
