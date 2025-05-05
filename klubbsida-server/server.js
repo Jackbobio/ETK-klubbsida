@@ -2,7 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const newsRoutes = require('./routes/news');
-const adminRoutes = require('./routes/admin');
+const jwtCheck = require('../middleware/jwtCheck');
+const checkAdminRole = require('../middleware/roleCheck');
 
 require('dotenv').config();
 
