@@ -19,9 +19,9 @@ export default function Minasidor() {
         console.log("User data:", user);
 
         // First check client-side roles (for UI purposes)
-        const clientRoles = user["https://localhost:5173/roles"] || 
-                           user["https://dev-nwurgok5vi3aouh3.eu.auth0.com/roles"] || [];
-
+        const clientRoles = user["https://dev-nwurgok5vi3aouh3.eu.auth0.com/roles"] || 
+                           user["https://localhost:5173/roles"] || [];
+                           
         console.log("User roles:", clientRoles);
         
         const hasAdminRole = clientRoles.includes("Administrator");
