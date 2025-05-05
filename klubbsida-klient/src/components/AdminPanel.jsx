@@ -7,7 +7,7 @@ export default function AdminPanel() {
     const [adminMessage, setAdminMessage] = useState('');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
-    const [newsForm, setNewsForm] = useState({ title: '', content: '' });
+    const [newsForm, setNewsForm] = useState({ title: '', content: '', coverpage:''});
     const { isAuthenticated, loginWithRedirect } = useAuth0();
     const { get, post } = useApi();
 
@@ -58,8 +58,8 @@ export default function AdminPanel() {
     const handleSubmitNews = async (e) => {
         e.preventDefault();
         
-        if (!newsForm.title || !newsForm.content) {
-            setError('Title and content are required');
+        if (!newsForm.title || !newsForm.content || !newsForm.coverpage) {
+            setError('Title, content and coverpage are required');
             return;
         }
         
@@ -114,6 +114,28 @@ export default function AdminPanel() {
                             placeholder="News Title"
                         />
                     </div>
+
+                    <div className='mb-4'>
+                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="coverpage">
+                            Coverpage
+                        </label>
+                            <input
+                                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline hover:cursor-pointer"
+                                type="file"
+                                name="coverpage"
+                                accept="image/*"
+                                onChange={(e) => {
+                                    const file = e.target.files[0];
+                                    if (file) {
+                                        const reader = new FileReader();
+                                        reader.onloadend = () => {
+                                            setNewsForm(prev => ({ ...prev, coverpage: reader.result }));
+                                        };
+                                        reader.readAsDataURL(file);
+                                    }
+                                }}  />
+  
+                    </div>
                     
                     <div className="mb-6">
                         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="content">
@@ -131,7 +153,7 @@ export default function AdminPanel() {
                     
                     <div className="flex items-center justify-between">
                         <button
-                            className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                            className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline hover:cursor-pointer"
                             type="submit"
                             disabled={loading}
                         >
