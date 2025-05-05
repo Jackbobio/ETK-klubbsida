@@ -4,8 +4,10 @@ const jwksRsa = require('jwks-rsa');
 /**
  * JWT authentication middleware
  * Verifies that incoming requests have a valid JWT token from Auth0
- * This middleware should be applied to all routes that require authentication
+ * This middleware should be applied to all routes that require authentication¨¨
  */
+
+
 const jwtCheck = jwt({
   secret: jwksRsa.expressJwtSecret({
     cache: true,

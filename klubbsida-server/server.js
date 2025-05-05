@@ -10,14 +10,20 @@ const app = express();
 
 const jwtCheck = require('./middleware/jwtCheck');
 const checkAdminRole = require('./middleware/roleCheck');
+const logRequest = require('./logRequest');
 
 app.use(cors());
 app.use(express.json());
 app.use('/api/news', newsRoutes);
 // app.use('/api/admin', adminRoutes);
 
-app.get('/api/admin', jwtCheck, checkAdminRole, (req, res) => {
-    res.json({ admin: true });
+app.get('/api/admin', logRequest, jwtCheck, (req, res, next) => {
+    // This runs only AFTER jwtCheck succeeds!
+    console.log('jwtCheck passed, req.user:', req.user);
+    next();
+  }, checkAdminRole, (req, res) => {
+    // Your handler
+    res.json({ ok: true });
   });
 
 mongoose.connect(process.env.MONGO_URI)
