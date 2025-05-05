@@ -13,8 +13,8 @@ const jwtCheck = jwt({
     jwksUri: 'https://dev-nwurgok5vi3aouh3.eu.auth0.com/.well-known/jwks.json'
   }),
   audience: 'klubbsida.onrender.com/api',
-  issuer: 'https://dev-nwurgok5vi3aouh3.eu.auth0.com',
+  issuer: 'https://dev-nwurgok5vi3aouh3.eu.auth0.com/',
   algorithms: ['RS256'],
 });
 
-module.exports = jwtCheck;
+module.exports = jwtCheck;  
