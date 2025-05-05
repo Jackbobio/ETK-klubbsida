@@ -7,6 +7,8 @@ import Playerpanel from "../components/Playerpanel";
 import { useApi } from '../utils/api';
 
 export default function Minasidor() {
+    
+    
     const { user, isAuthenticated, isLoading } = useAuth0();
     const [isAdmin, setIsAdmin] = useState(false);
     // const [error, setError] = useState(null);

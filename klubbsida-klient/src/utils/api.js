@@ -3,6 +3,7 @@
  * This file provides helper functions for interacting with the backend API
  */
 import { useAuth0 } from '@auth0/auth0-react';
+import { useCallback } from 'react';
 
 // Base URL for API requests
 const API_URL = import.meta.env.VITE_API_URL || 'https://klubbsida.onrender.com/api';
@@ -20,7 +21,7 @@ export const useApi = () => {
    * @param {Object} options - Fetch options (method, body, etc.)
    * @returns {Promise<Object>} Response data
    */
-  const callApi = async (endpoint, options = {}) => {
+  const callApi = useCallback(async (endpoint, options = {}) => {
     try {
       const url = `${API_URL}${endpoint}`;
       const fetchOptions = {
@@ -35,6 +36,7 @@ export const useApi = () => {
       if (isAuthenticated) {
         try {
           const token = await getAccessTokenSilently();
+          console.log('Access token:', token);
           fetchOptions.headers = {
             ...fetchOptions.headers,
             Authorization: `Bearer ${token}`,
@@ -43,6 +45,9 @@ export const useApi = () => {
           console.error('Error getting access token:', error);
         }
       }
+
+      console.log('API call:', url, fetchOptions);
+      
 
       const response = await fetch(url, fetchOptions);
       
@@ -63,14 +68,14 @@ export const useApi = () => {
       console.error('API call failed:', error);
       throw error;
     }
-  };
+  }, [getAccessTokenSilently, isAuthenticated]);
 
   /**
    * Helper function for GET requests
    * @param {string} endpoint - API endpoint
    * @returns {Promise<Object>} Response data
    */
-  const get = (endpoint) => callApi(endpoint, { method: 'GET' });
+  const get = useCallback((endpoint) => callApi(endpoint, { method: 'GET' }), [callApi]);
 
   /**
    * Helper function for POST requests
@@ -78,10 +83,10 @@ export const useApi = () => {
    * @param {Object} data - Request body data
    * @returns {Promise<Object>} Response data
    */
-  const post = (endpoint, data) => callApi(endpoint, {
+  const post = useCallback((endpoint, data) => callApi(endpoint, {
     method: 'POST',
     body: JSON.stringify(data),
-  });
+  }), [callApi]);
 
   /**
    * Helper function for PUT requests
@@ -89,17 +94,17 @@ export const useApi = () => {
    * @param {Object} data - Request body data
    * @returns {Promise<Object>} Response data
    */
-  const put = (endpoint, data) => callApi(endpoint, {
+  const put = useCallback((endpoint, data) => callApi(endpoint, {
     method: 'PUT',
     body: JSON.stringify(data),
-  });
+  }), [callApi]);
 
   /**
    * Helper function for DELETE requests
    * @param {string} endpoint - API endpoint
    * @returns {Promise<Object>} Response data
    */
-  const del = (endpoint) => callApi(endpoint, { method: 'DELETE' });
+  const del = useCallback((endpoint) => callApi(endpoint, { method: 'DELETE' }), [callApi]);
 
   return {
     callApi,
