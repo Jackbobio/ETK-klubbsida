@@ -1,18 +1,17 @@
 /**
- * API utility functions for making authenticated requests
- * This file provides helper functions for interacting with the backend API
+ * Mock implementation of the API utility for testing
  */
-import { useAuth0 } from '@auth0/auth0-react';
-import { useCallback } from 'react';
+const { useCallback } = require('react');
+const { useAuth0 } = require('@auth0/auth0-react');
 
 // Base URL for API requests
-const API_URL = import.meta.env.VITE_API_URL || 'https://klubbsida.onrender.com/api';
+const API_URL = 'https://klubbsida.onrender.com/api';
 
 /**
  * Custom hook for making authenticated API requests
  * @returns {Object} API utility functions
  */
-export const useApi = () => {
+exports.useApi = () => {
   const { getAccessTokenSilently, isAuthenticated } = useAuth0();
 
   /**
@@ -36,21 +35,16 @@ export const useApi = () => {
       if (isAuthenticated) {
         try {
           const token = await getAccessTokenSilently();
-          console.log('Access token:', token);
           fetchOptions.headers = {
             ...fetchOptions.headers,
             Authorization: `Bearer ${token}`,
           };
         } catch (error) {
-          console.error('Error getting access token:', error);
           // If we can't get a token for an authenticated request, throw an error
           // This prevents sending unauthenticated requests to protected endpoints
           throw new Error('Failed to get access token. Please try logging in again.');
         }
       }
-
-      console.log('API call:', url, fetchOptions);
-      
 
       const response = await fetch(url, fetchOptions);
       
@@ -68,7 +62,6 @@ export const useApi = () => {
       
       return await response.text();
     } catch (error) {
-      console.error('API call failed:', error);
       throw error;
     }
   }, [getAccessTokenSilently, isAuthenticated]);

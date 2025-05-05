@@ -7,11 +7,9 @@ import Playerpanel from "../components/Playerpanel";
 import { useApi } from '../utils/api';
 
 export default function Minasidor() {
-    
-    
-    const { user, isAuthenticated, isLoading } = useAuth0();
+    const { user, isAuthenticated, isLoading, loginWithRedirect } = useAuth0();
     const [isAdmin, setIsAdmin] = useState(false);
-    // const [error, setError] = useState(null);
+    const [error, setError] = useState(null);
     const { get } = useApi();
 
     // Check if user has admin role
@@ -19,9 +17,10 @@ export default function Minasidor() {
         if (!isAuthenticated || !user) return;
 
         // First check client-side roles (for UI purposes)
-        const clientRoles = user["https://localhost:5173/roles"] || [];
+        const clientRoles = user["https://localhost:5173/roles"] || 
+                           user["https://dev-nwurgok5vi3aouh3.eu.auth0.com/roles"] || [];
 
-        console.log(clientRoles)
+        console.log("User roles:", clientRoles);
         
         const hasAdminRole = clientRoles.includes("Administrator");
         setIsAdmin(hasAdminRole);
@@ -31,18 +30,24 @@ export default function Minasidor() {
             const verifyAdminWithServer = async () => {
                 try {
                     await get('/admin');
-                    // Server comfirms admin access
+                    // Server confirms admin access
                     setIsAdmin(true);
+                    setError(null);
                 } catch (err) {
                     console.log('Server admin verification failed:', err);
-                    // Don't change isAdmin state here - we'll still show the UI
-                    // but API calls will fail appropriately
+                    
+                    // Handle token errors specifically
+                    if (err.message.includes('access token')) {
+                        setError('Authentication session expired. Please log in again.');
+                        // Optionally redirect to login after a delay
+                        setTimeout(() => loginWithRedirect(), 3000);
+                    }
                 }
             };
             
             verifyAdminWithServer();
         }
-    }, [isAuthenticated, user, get]);
+    }, [isAuthenticated, user, get, loginWithRedirect]);
 
     // Show loading state
     if (isLoading) {
@@ -56,7 +61,12 @@ export default function Minasidor() {
         return <Errorpanel error={{ message: "Du är inte inloggad! Logga in för att se dina sidor." }} />;
     }
 
-    console.log(isAdmin)
+    // Show error message if there is one
+    if (error) {
+        return <Errorpanel error={{ message: error }} />;
+    }
+
+    console.log("Is admin:", isAdmin);
 
     return (
         <div>

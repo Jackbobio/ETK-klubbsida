@@ -8,7 +8,7 @@ export default function AdminPanel() {
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     const [newsForm, setNewsForm] = useState({ title: '', content: '' });
-    const { isAuthenticated } = useAuth0();
+    const { isAuthenticated, loginWithRedirect } = useAuth0();
     const { get, post } = useApi();
 
     // Verify admin access on component mount
@@ -17,7 +17,10 @@ export default function AdminPanel() {
             console.log("Verifying admin access")
             console.log("Is authenticated:", isAuthenticated)
 
-            if (!isAuthenticated) return;
+            if (!isAuthenticated) {
+                setError('You must be logged in to access the admin panel');
+                return;
+            }
             
             setLoading(true);
             setError('');
@@ -26,8 +29,16 @@ export default function AdminPanel() {
                 const response = await get('/admin');
                 setAdminMessage(response.message);
             } catch (err) {
-                setError('Failed to verify admin access. Please make sure you have administrator privileges.');
                 console.error('Admin verification error:', err);
+                
+                // Handle token errors specifically
+                if (err.message.includes('access token')) {
+                    setError('Authentication session expired. Please log in again.');
+                    // Optionally redirect to login after a delay
+                    setTimeout(() => loginWithRedirect(), 3000);
+                } else {
+                    setError('Failed to verify admin access. Please make sure you have administrator privileges.');
+                }
             } finally {
                 console.log("Set loading to false")
                 setLoading(false);
@@ -35,7 +46,7 @@ export default function AdminPanel() {
         };
 
         verifyAdminAccess();
-    }, [isAuthenticated, get]);
+    }, [isAuthenticated, get, loginWithRedirect]);
 
     // Handle news form input changes
     const handleInputChange = (e) => {
