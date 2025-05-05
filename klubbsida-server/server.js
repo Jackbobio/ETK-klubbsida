@@ -11,8 +11,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use('/api/news', newsRoutes);
-app.use('/api/admin', adminRoutes);
+// app.use('/api/admin', adminRoutes);
 
+app.get('/api/admin', jwtCheck, checkAdminRole, (req, res) => {
+    res.json({ admin: true });
+  });
 
 mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log('Connected to MongoDB'))
