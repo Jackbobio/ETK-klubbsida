@@ -2,12 +2,14 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const newsRoutes = require('./routes/news');
-const jwtCheck = require('./middleware/jwtCheck');
-const checkAdminRole = require('./middleware/roleCheck');
+
 
 require('dotenv').config();
 
 const app = express();
+
+const jwtCheck = require('./middleware/jwtCheck');
+const checkAdminRole = require('./middleware/roleCheck');
 
 app.use(cors());
 app.use(express.json());
