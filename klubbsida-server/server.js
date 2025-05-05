@@ -19,7 +19,7 @@ app.use('/api/news', newsRoutes);
 
 app.get('/api/admin', logRequest, jwtCheck, (req, res, next) => {
     // This runs only AFTER jwtCheck succeeds!
-    console.log('jwtCheck passed, req.user:', req.user);
+    console.log('jwtCheck passed, req.auth:', req.auth);
     next();
   }, checkAdminRole, (req, res) => {
     // Your handler
