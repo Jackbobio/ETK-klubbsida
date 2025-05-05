@@ -38,3 +38,12 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
+
+app.use((err, req, res, next) => {
+    if (err.name === 'UnauthorizedError') {
+      // JWT failed
+      console.error('JWT verification error:', err);
+      return res.status(401).json({ error: 'Invalid token' });
+    }
+    next(err);
+  });
