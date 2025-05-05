@@ -5,6 +5,8 @@
  */
 function checkAdminRole(req, res, next) {
     // Make sure we have a user object from the JWT middleware
+    console.log("User object in checkAdminRole:", req.user);
+
     if (!req.user) {
         return res.status(401).json({ 
             error: "Authentication required",
@@ -14,8 +16,7 @@ function checkAdminRole(req, res, next) {
 
     // Extract roles from the user object
     // The namespace should match what's configured in Auth0
-    const roles = req.user["https://dev-nwurgok5vi3aouh3.eu.auth0.com/roles"] || 
-                 req.user["https://localhost:5173/roles"] || [];
+    const roles = req.user["https://localhost:5173/roles"] || [];
     
     // Check if the user has the Administrator role
     if (roles.includes("Administrator")) {

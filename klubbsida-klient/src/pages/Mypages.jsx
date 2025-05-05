@@ -16,6 +16,8 @@ export default function Minasidor() {
     useEffect(() => {
         if (!isAuthenticated || !user) return;
 
+        console.log("User data:", user);
+
         // First check client-side roles (for UI purposes)
         const clientRoles = user["https://localhost:5173/roles"] || 
                            user["https://dev-nwurgok5vi3aouh3.eu.auth0.com/roles"] || [];
