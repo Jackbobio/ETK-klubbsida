@@ -14,6 +14,9 @@ export default function AdminPanel() {
     // Verify admin access on component mount
     useEffect(() => {
         const verifyAdminAccess = async () => {
+            console.log("Verifying admin access")
+            console.log("Is authenticated:", isAuthenticated)
+
             if (!isAuthenticated) return;
             
             setLoading(true);
@@ -26,6 +29,7 @@ export default function AdminPanel() {
                 setError('Failed to verify admin access. Please make sure you have administrator privileges.');
                 console.error('Admin verification error:', err);
             } finally {
+                console.log("Set loading to false")
                 setLoading(false);
             }
         };

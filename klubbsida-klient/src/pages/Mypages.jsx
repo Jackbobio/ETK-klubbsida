@@ -29,7 +29,7 @@ export default function Minasidor() {
             const verifyAdminWithServer = async () => {
                 try {
                     await get('/admin');
-                    // If we get here, the server confirmed admin access
+                    // Server comfirms admin access
                     setIsAdmin(true);
                 } catch (err) {
                     console.log('Server admin verification failed:', err);
