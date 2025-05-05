@@ -10,10 +10,10 @@ const jwtCheck = jwt({
   secret: jwksRsa.expressJwtSecret({
     cache: true,
     rateLimit: true,
-    jwksUri: 'dev-nwurgok5vi3aouh3.eu.auth0.com/.well-known/jwks.json'
+    jwksUri: 'https://dev-nwurgok5vi3aouh3.eu.auth0.com/.well-known/jwks.json'
   }),
   audience: 'klubbsida.onrender.com/api',
-  issuer: 'dev-nwurgok5vi3aouh3.eu.auth0.com',
+  issuer: 'https://dev-nwurgok5vi3aouh3.eu.auth0.com',
   algorithms: ['RS256'],
 });
 
