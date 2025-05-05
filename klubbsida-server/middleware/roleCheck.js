@@ -21,7 +21,7 @@ function checkAdminRole(req, res, next) {
     //console.log("User roles:", roles);
     
     // Check if the user has the Administrator permission
-    if (Array.isArray(req.auth.permissions) && permissions.includes("admin:all")) {
+    if (Array.isArray(req.auth.payload.permissions) && permissions.includes("admin:all")) {
         next();
     } else {
         return res.status(403).json({
