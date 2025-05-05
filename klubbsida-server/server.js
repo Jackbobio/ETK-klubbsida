@@ -1,10 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-app.use(cors({
-    origin: 'http://localhost:5173', // allow your frontend dev server
-    credentials: true,             
-  }));
 const newsRoutes = require('./routes/news');
 
 
