@@ -14,15 +14,13 @@ function checkAdminRole(req, res, next) {
         });
     }
 
-    // Extract roles from the auth object
-    // The namespace should match what's configured in Auth0
-    
-    const permissions = req.auth.permissions || [];
+    // Extract permissions from the auth object
+    const permissions = req.auth.payload.permissions || [];
     console.log("Permissions:", permissions);
 
     //console.log("User roles:", roles);
     
-    // Check if the user has the Administrator role
+    // Check if the user has the Administrator permission
     if (Array.isArray(req.auth.permissions) && permissions.includes("admin:all")) {
         next();
     } else {
