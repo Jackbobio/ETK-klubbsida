@@ -40,6 +40,7 @@ app.listen(PORT, () => {
 });
 
 app.use((err, req, res, next) => {
+    console.error('Error:', err);
     if (err.name === 'UnauthorizedError') {
       // JWT failed
       console.error('JWT verification error:', err);
