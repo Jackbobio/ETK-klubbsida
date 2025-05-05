@@ -10,7 +10,7 @@ const app = express();
 
 const jwtCheck = require('./middleware/jwtCheck');
 const checkAdminRole = require('./middleware/roleCheck');
-const logRequest = require('./logRequest');
+const logRequest = require('./mock/logRequest');
 
 app.use(cors());
 app.use(express.json());
