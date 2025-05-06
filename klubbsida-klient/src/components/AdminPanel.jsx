@@ -7,12 +7,14 @@ import { useAuth0 } from '@auth0/auth0-react';
 import AdminHeader from './admin/AdminHeader';
 import StatusMessage from './admin/StatusMessage';
 import NewsForm from './admin/NewsForm';
+import PricePanel from './admin/PricePanel';
 
 export default function AdminPanel() {
     const [adminMessage, setAdminMessage] = useState('');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     const [newsForm, setNewsForm] = useState({ title: '', content: '', coverpage: '', contentImage: '' });
+    const [prices, setPrices] = useState([]);
     const { isAuthenticated, loginWithRedirect } = useAuth0();
     const { get, post } = useApi();
 
@@ -77,6 +79,38 @@ export default function AdminPanel() {
         }
     };
 
+    const handlePricesRequest = async () => {
+        setLoading(true);
+        setError('');
+
+        try {
+            const response = await get('/price');
+            console.log('Price request successful:', response);
+            alert('Price request successful!');
+        } catch (err) {
+            setError('Failed to request price. ' + err.message);
+            console.error('Price request error:', err);
+        } finally {
+            setLoading(false);
+        }
+    }
+
+    const handlePriceUpdate = async (priceData) => {
+        setLoading(true);
+        setError('');
+
+        try {
+            const response = await put('/price', priceData);
+            console.log('Price update successful:', response);
+            alert('Price update successful!');
+        } catch (err) {
+            setError('Failed to update price. ' + err.message);
+            console.error('Price update error:', err);
+        } finally {
+            setLoading(false);
+        }
+    }
+
     return (
         <div className="flex flex-col items-center justify-start p-6 bg-gray-100 min-h-screen">
             <AdminHeader />
@@ -87,7 +121,7 @@ export default function AdminPanel() {
                 loading={loading} 
             />
             
-            <div className="flex flex-row gap-x-40 items-center">
+            <div className="flex flex-row gap-x-10 w-full max-w-4xl">
             <NewsForm 
                 newsForm={newsForm}
                 setNewsForm={setNewsForm}
@@ -95,7 +129,13 @@ export default function AdminPanel() {
                 loading={loading}
                 setError={setError}
             />
-            <h1>Hej</h1>
+            <PricePanel 
+                prices={handlePricesRequest}
+                setPrices={setPrices}
+                updatePrice={handlePriceUpdate}
+                loading={loading}
+                setError={setError}
+            />
             </div>
             
             
