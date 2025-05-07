@@ -1,12 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const Price = require('../models/Prices');
+const jwtCheck = require('../middleware/jwtCheck');
+const checkAdminRole = require('../middleware/roleCheck');
 
 router.get('/', async (req, res) => {
     try {
         const prices = await Price.find();
         if (prices.length === 0) {
-            return res.status(404).json({ message: 'No prices found for' });
+            return res.status(404).json({ message: 'No prices found' });
         }
         res.json(prices);
     } catch (err) {
@@ -14,7 +16,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.post('/', async (req, res) => {
+router.post('/', jwtCheck, checkAdminRole, async (req, res) => {
     const price = new Price({
         item: req.body.title,
         price: req.body.price,
