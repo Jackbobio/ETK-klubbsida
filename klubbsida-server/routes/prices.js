@@ -13,3 +13,17 @@ router.get('/', async (req, res) => {
         res.status(500).json({ message: err.message });
     }
 });
+
+router.post('/', async (req, res) => {
+    const price = new Price({
+        item: req.body.title,
+        price: req.body.price,
+    });
+
+    try {
+        const newPrice = await price.save();
+        res.status(201).json(newPrice);
+    } catch (err) {
+        res.status(400).json({ message: err.message });
+    }
+});

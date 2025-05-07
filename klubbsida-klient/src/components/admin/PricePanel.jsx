@@ -24,6 +24,7 @@ export default function PricePanel({
 
     return (
     <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-full max-w-3xl">
+        <form action="onSubmit"></form>
         <AdminHeading title="Prices" />
         <p className="text-gray-700 text-sm mb-4">Manage prices for membership fees and events.</p>
         <AdminInputField 
