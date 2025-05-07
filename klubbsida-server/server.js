@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const newsRoutes = require('./routes/news');
+const pricesRoutes = require('./routes/prices');
 
 
 require('dotenv').config();
@@ -15,6 +16,7 @@ const logRequest = require('./mock/logRequest');
 app.use(cors());
 app.use(express.json());
 app.use('/api/news', newsRoutes);
+app.use('/api/prices', pricesRoutes);
 // app.use('/api/admin', adminRoutes);
 
 app.get('/api/admin', logRequest, jwtCheck, (req, res, next) => {
