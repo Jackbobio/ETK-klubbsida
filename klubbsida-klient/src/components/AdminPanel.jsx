@@ -16,7 +16,7 @@ export default function AdminPanel() {
     const [newsForm, setNewsForm] = useState({ title: '', content: '', coverpage: '', contentImage: '' });
     const [prices, setPrices] = useState([]);
     const { isAuthenticated, loginWithRedirect } = useAuth0();
-    const { get, post } = useApi();
+    const { get, post, put } = useApi();
 
     // Verify admin access on component mount
     useEffect(() => {
@@ -87,6 +87,7 @@ export default function AdminPanel() {
             const response = await get('/price');
             console.log('Price request successful:', response);
             alert('Price request successful!');
+            setPrices(response);
         } catch (err) {
             setError('Failed to request price. ' + err.message);
             console.error('Price request error:', err);
