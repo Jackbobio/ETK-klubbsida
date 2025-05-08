@@ -26,7 +26,22 @@ router.post('/', jwtCheck, checkAdminRole, async (req, res) => {
         const newPrice = await price.save();
         res.status(201).json(newPrice);
     } catch (err) {
-        res.status(400).json({ message: err.message });
+        res.status(500).json({ message: err.message });
+    }
+});
+
+router.put('/:id', async (req, res) => {
+    try {
+        const price = await Price.findById(req.params.id);
+        if (!price) {
+            return res.status(404).json({ message: 'Price not found' });
+        }
+
+        price.price = req.body.price;
+        const updatedPrice = await price.save();
+        res.json(updatedPrice);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
     }
 });
 

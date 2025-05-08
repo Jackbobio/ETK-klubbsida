@@ -9,6 +9,7 @@ export function AdminInputField({
     placeholder,
     onChange,
     value,
+    type,
     error }) {
 
         return (
@@ -18,7 +19,7 @@ export function AdminInputField({
                 </label>
                 <input
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    type="text"
+                    type={type}
                     id={name}
                     name={name}
                     value={value}

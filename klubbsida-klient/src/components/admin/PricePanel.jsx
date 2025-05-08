@@ -1,6 +1,8 @@
 import React from "react";
+import PropTypes from "prop-types";
 import AdminHeading from "../ui/AdminHeading";
 import { AdminInputField } from "../ui/AdminInputField";
+import { useEffect } from "react";
 
 /*
     * Component for managing prices such as membership fees and event costs.
@@ -8,31 +10,62 @@ import { AdminInputField } from "../ui/AdminInputField";
     */
 
 export default function PricePanel({
-    priceForm,
-    setPriceForm,
     prices,
-    setPrices,
+    editedPrices,
+    setEditedPrices,
+    handlePricesRequest,
+    handlePricesUpdate,
+    loading,
+    setError,
+    setAdminMessage,
 }) {
 
-    // Handle price updates
-    const handleOnChange = (e) => {
-        const { name, value } = e.target;
-        setPriceForm(prev => ({ ...prev, [name]: value }));
+    // Fetch prices when the component mounts
+    useEffect(() => {
+        handlePricesRequest();
+    }, []);
+
+    // Handle change in price input fields
+    const handleOnChange = (index, newValue) => {
+        setEditedPrices((prevPrices) => {
+            const updatedPrices = [...prevPrices];
+            updatedPrices[index].price = newValue;
+            return updatedPrices;
+        });
     }
 
+
+
+    PricePanel.propTypes = {
+        prices: PropTypes.array.isRequired, 
+        editedPrices: PropTypes.array.isRequired,
+        setPrices: PropTypes.func.isRequired,
+        handlePricesRequest: PropTypes.func,
+        handlePricesUpdate: PropTypes.func,
+        loading: PropTypes.bool,
+        setError: PropTypes.func,
+        setAdminMessage: PropTypes.func,
+    };
+    
     return (
     <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-full max-w-3xl">
-        <form action="onSubmit"></form>
+    <form>
         <AdminHeading title="Prices" />
         <p className="text-gray-700 text-sm mb-4">Manage prices for membership fees and events.</p>
+        {prices.map((price, index) => (
+        <div key={price.item} className="mb-4">
         <AdminInputField 
-            label="testinput"
-            name="Testinput"
-            placeholder="Testplaceholder"
-            value={priceForm.testinput}
-            onChange={handleOnChange}
-            
+            label={price.item + " - Pris nuvarande: " + price.price + " kr"}
+            name="Input1"
+            type="number"
+            value={price.edi}
+            onChange={(e) => handleOnChange(index, e.target.value)}
         />
+        </div>
+        ))}
+    </form>
     </div>
     );
+
+    
 }

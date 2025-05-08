@@ -14,8 +14,8 @@ export default function AdminPanel() {
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     const [newsForm, setNewsForm] = useState({ title: '', content: '', coverpage: '', contentImage: '' })
-    const [priceForm, setPriceForm] = useState({ item: '', price: '' });
     const [prices, setPrices] = useState([]);
+    const [editedPrices, setEditedPrices] = useState([]);
     const { isAuthenticated, loginWithRedirect } = useAuth0();
     const { get, post, put } = useApi();
 
@@ -56,6 +56,7 @@ export default function AdminPanel() {
         verifyAdminAccess();
     }, [isAuthenticated, get, loginWithRedirect]);
 
+
     // Handle news form submission
     const handleSubmitNews = async (e) => {
         e.preventDefault();
@@ -85,10 +86,11 @@ export default function AdminPanel() {
         setError('');
 
         try {
-            const response = await get('/price');
+            const response = await get('/prices');
             console.log('Price request successful:', response);
-            alert('Price request successful!');
             setPrices(response);
+            setEditedPrices(response.map(price => ({ ...price})));
+            
         } catch (err) {
             setError('Failed to request price. ' + err.message);
             console.error('Price request error:', err);
@@ -97,14 +99,20 @@ export default function AdminPanel() {
         }
     }
 
-    const handlePriceUpdate = async (priceData) => {
+    const handlePricesUpdate = async () => {
         setLoading(true);
         setError('');
 
         try {
-            const response = await put('/price', priceData);
-            console.log('Price update successful:', response);
-            alert('Price update successful!');
+            const updates = editedPrices.filter((edited, index) => 
+                edited.price !== prices[index].price
+            );
+
+            for (const update of updates) {
+                await put(`/prices/${update._id}`, { price: update.price });
+            }
+
+            console.log('Price update successful');
         } catch (err) {
             setError('Failed to update price. ' + err.message);
             console.error('Price update error:', err);
@@ -132,13 +140,13 @@ export default function AdminPanel() {
                 setError={setError}
             />
             <PricePanel
-                prices={prices}
-                priceForm={priceForm}
-                setPriceForm={setPriceForm}
+                editedPrices={editedPrices}
+                setEditedPrices={setEditedPrices}
                 handlePricesRequest={handlePricesRequest}
-                updatePrice={handlePriceUpdate}
+                handlePricesUpdate={handlePricesUpdate}
                 loading={loading}
                 setError={setError}
+                setAdminMessage={setAdminMessage}
             />
             </div>
             

@@ -3,8 +3,7 @@ import { useState } from 'react';
 import { useApi } from '../utils/api';
 
 
-export default function Membership({
-}) {
+export default function Membership() {
     const [prices, setPrices] = useState([]);
     const { get } = useApi();
 
