@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 
 
-export function AdminInputField({  
+export default function AdminInputField({  
     label,
     name,
     placeholder,

@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import AdminHeading from "../ui/AdminHeading";
-import { AdminInputField } from "../ui/AdminInputField";
+import AdminInputField  from "../ui/AdminInputField";
 import { useEffect } from "react";
 
 /*
@@ -23,6 +23,7 @@ export default function PricePanel({
     // Fetch prices when the component mounts
     useEffect(() => {
         handlePricesRequest();
+        
     }, []);
 
     // Handle change in price input fields
@@ -46,6 +47,9 @@ export default function PricePanel({
         setError: PropTypes.func,
         setAdminMessage: PropTypes.func,
     };
+
+    console.log("prices: ", prices);
+    console.log("editedPrices", editedPrices);
     
     return (
     <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-full max-w-3xl">
@@ -58,7 +62,8 @@ export default function PricePanel({
             label={price.item + " - Pris nuvarande: " + price.price + " kr"}
             name="Input1"
             type="number"
-            value={price.edi}
+            value={editedPrices[0].price || ""}
+            placeholder="Ange nytt pris"
             onChange={(e) => handleOnChange(index, e.target.value)}
         />
         </div>

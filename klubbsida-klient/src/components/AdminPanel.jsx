@@ -10,11 +10,11 @@ import NewsForm from './admin/NewsForm';
 import PricePanel from './admin/PricePanel';
 
 export default function AdminPanel() {
+    const prices = ([]);
     const [adminMessage, setAdminMessage] = useState('');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     const [newsForm, setNewsForm] = useState({ title: '', content: '', coverpage: '', contentImage: '' })
-    const [prices, setPrices] = useState([]);
     const [editedPrices, setEditedPrices] = useState([]);
     const { isAuthenticated, loginWithRedirect } = useAuth0();
     const { get, post, put } = useApi();
@@ -88,9 +88,8 @@ export default function AdminPanel() {
         try {
             const response = await get('/prices');
             console.log('Price request successful:', response);
-            setPrices(response);
+            prices.push(response);
             setEditedPrices(response.map(price => ({ ...price})));
-            
         } catch (err) {
             setError('Failed to request price. ' + err.message);
             console.error('Price request error:', err);
@@ -140,8 +139,9 @@ export default function AdminPanel() {
                 setError={setError}
             />
             <PricePanel
-                editedPrices={editedPrices}
+                prices={prices}
                 setEditedPrices={setEditedPrices}
+                editedPrices={editedPrices}
                 handlePricesRequest={handlePricesRequest}
                 handlePricesUpdate={handlePricesUpdate}
                 loading={loading}
