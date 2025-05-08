@@ -16,7 +16,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.post('/', jwtCheck, checkAdminRole, async (req, res) => {
+router.post('/', async (req, res) => {
     const price = new Price({
         item: req.body.title,
         price: req.body.price,
@@ -30,7 +30,7 @@ router.post('/', jwtCheck, checkAdminRole, async (req, res) => {
     }
 });
 
-router.put('/:id', jwtCheck, checkAdminRole, async (req, res) => {
+router.put('/:id', async (req, res) => {
     try {
         const price = await Price.findById(req.params.id);
         if (!price) {
