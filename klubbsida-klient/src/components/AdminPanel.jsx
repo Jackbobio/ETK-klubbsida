@@ -15,6 +15,7 @@ export default function AdminPanel() {
     const [loading, setLoading] = useState(false);
     const [newsForm, setNewsForm] = useState({ title: '', content: '', coverpage: '', contentImage: '' })
     const [priceForm, setPriceForm] = useState({ item: '', price: '' });
+    const [prices, setPrices] = useState([]);
     const { isAuthenticated, loginWithRedirect } = useAuth0();
     const { get, post, put } = useApi();
 
@@ -130,8 +131,10 @@ export default function AdminPanel() {
                 loading={loading}
                 setError={setError}
             />
-            <PricePanel 
+            <PricePanel
+                prices={prices}
                 priceForm={priceForm}
+                setPriceForm={setPriceForm}
                 handlePricesRequest={handlePricesRequest}
                 updatePrice={handlePriceUpdate}
                 loading={loading}
