@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 export default function AdminButton({
     label,
@@ -18,3 +19,11 @@ export default function AdminButton({
           </button>
     );
 }
+
+AdminButton.propTypes = {
+    label: PropTypes.string.isRequired,
+    loadingLabel: PropTypes.string,
+    onClick: PropTypes.func,
+    type: PropTypes.string,
+    loading: PropTypes.bool,
+};

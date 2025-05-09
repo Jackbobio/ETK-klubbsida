@@ -36,7 +36,7 @@ export const useApi = () => {
       if (isAuthenticated) {
         try {
           const token = await getAccessTokenSilently();
-          console.log('Access token:', token);
+          // console.log('Access token:', token);
           fetchOptions.headers = {
             ...fetchOptions.headers,
             Authorization: `Bearer ${token}`,

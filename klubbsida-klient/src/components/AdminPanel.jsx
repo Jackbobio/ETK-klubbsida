@@ -10,7 +10,7 @@ import NewsForm from './admin/NewsForm';
 import PricePanel from './admin/PricePanel';
 
 export default function AdminPanel() {
-    const [prices, setPrices] = ([]);
+    const [prices, setPrices] = useState([]);
     const [adminMessage, setAdminMessage] = useState('');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
@@ -89,7 +89,7 @@ export default function AdminPanel() {
             const response = await get('/prices');
             console.log('Price request successful:', response);
             setPrices(response);
-            setEditedPrices(response.map(price => ({ ...price})));
+            setEditedPrices(response.map(p => ({ ...p })));
         } catch (err) {
             setError('Failed to request price. ' + err.message);
             console.error('Price request error:', err);
@@ -107,10 +107,12 @@ export default function AdminPanel() {
                 edited.price !== prices[index].price
             );
 
+
+
             for (const update of updates) {
                 await put(`/prices/${update._id}`, { price: update.price });
             }
-
+            setAdminMessage('Prices updated successfully');
             console.log('Price update successful');
         } catch (err) {
             setError('Failed to update price. ' + err.message);
