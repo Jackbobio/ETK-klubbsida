@@ -35,8 +35,10 @@ export default function News(
     
     return (
         <>
-        <div className="font-bodoni flex flex-row items-center justify-between">
-            {news.map((item, index) => (
+        <div className="font-bodoni">
+        <h1 className='text-center text-5xl font-semibold p-5'>Senaste Nyheterna</h1>
+        <div className="flex flex-row items-center justify-between gap-5">
+            {news.slice(0,3).map((item, index) => (
             <div key={index} className="">
                 <Newsblock
                     coverImage={item.coverpage}
@@ -46,6 +48,7 @@ export default function News(
                 />
             </div>
             ))}
+        </div>
         </div>
         </>
     )

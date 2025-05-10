@@ -1,7 +1,5 @@
 const mongoose = require('mongoose');
 
-const datetime = new Date();
-const dateOnly = datetime.toISOString().split('T')[0];
 
 const newsSchema = new mongoose.Schema({
     title: {
