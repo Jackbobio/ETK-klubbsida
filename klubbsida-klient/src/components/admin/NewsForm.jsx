@@ -46,7 +46,7 @@ export default function NewsForm({
           label="Cover Image (Required: .webp format, 1:1 aspect ratio, min 600x600px)"
           name="coverpage"
           accept="image/webp"
-          value={newsForm.coverpage}
+          value={newsForm.coverPage}
           onChange={handleImageChange}
           validationOptions={{
             requiredFormat: 'webp',

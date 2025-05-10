@@ -35,11 +35,11 @@ export default function News(
     
     return (
         <>
-        <div className="font-bodoni">
+        <div className="font-bodoni flex flex-row items-center justify-between">
             {news.map((item, index) => (
-            <div key={index} className="flex flex-row items-center justify-center gap-10 pt-5 max-w-6xl">
+            <div key={index} className="">
                 <Newsblock
-                    coverImage={item.coverImage}
+                    coverImage={item.coverpage}
                     date={item.date}
                     title={item.title}
                     link={item.link} 

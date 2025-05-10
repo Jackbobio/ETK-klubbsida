@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 
+const dateOnly = datetime.toISOString().split('T')[0];
+
 const newsSchema = new mongoose.Schema({
     title: {
         type: String, required: true},
@@ -27,7 +29,7 @@ const newsSchema = new mongoose.Schema({
         }
     },
     date: {
-        type: Date, default: Date.now},
+        type: Date, default: dateOnly,},
 })
 
 module.exports = mongoose.model('News', newsSchema);
