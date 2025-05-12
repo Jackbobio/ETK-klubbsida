@@ -7,5 +7,5 @@ export default defineConfig({
   plugins: [
     tailwindcss(),
     react()],
-    base: '/ETK-klubbsida/'
+    base: '/ETK-klubbsida/klubbsida-klient',
 })
