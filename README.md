@@ -1,61 +1,76 @@
 # Klubbsida Application
 
-A web application for a sports club with member management and news functionality.
+A web application for a sports club with member management, news functionality, and robust security features.
+
+## Features
+
+- **Member Management**: Manage club members efficiently.
+- **News Management**: Create, update, and delete news articles.
+- **Role-Based Access Control**: Secure admin functionalities with role verification.
+- **Responsive Design**: Optimized for various devices.
 
 ## Security Implementation
 
-This application implements a robust security system to ensure that admin requests are secure and can only be made by authorized administrators.
-
 ### Authentication
 
-The application uses Auth0 for authentication:
-
-- JWT (JSON Web Token) based authentication
-- Tokens are verified using RS256 algorithm
-- Proper audience and issuer validation
+- Utilizes Auth0 for authentication.
+- JWT (JSON Web Token) based authentication with RS256 algorithm.
+- Validates audience and issuer for secure token verification.
 
 ### Authorization
 
-Role-based access control is implemented:
+- Role-based access control ensures only authorized users can access admin functionalities.
+- Admin routes and sensitive operations are restricted to users with the "Administrator" role.
 
-- Admin routes are protected with role verification
-- Only users with the "Administrator" role can access admin functionality
-- News creation, updating, and deletion are restricted to admins
+### Middleware
 
-### Security Middleware
+1. **JWT Authentication Middleware** (`jwtCheck.js`):
 
-Two main middleware components handle security:
+   - Verifies JWT tokens for incoming requests.
+   - Validates token signature, expiration, audience, and issuer.
+   - Attaches decoded user information to the request object.
 
-1. **JWT Authentication Middleware** (`jwtCheck.js`)
-   - Verifies that incoming requests have a valid JWT token
-   - Validates token signature, expiration, audience, and issuer
-   - Attaches the decoded user information to the request object
-
-2. **Admin Role Verification Middleware** (`roleCheck.js`)
-   - Checks if the authenticated user has the Administrator role
-   - Returns appropriate error responses for unauthorized access
-   - Supports multiple role claim formats for compatibility
+2. **Admin Role Verification Middleware** (`roleCheck.js`):
+   - Ensures the user has the "Administrator" role.
+   - Returns error responses for unauthorized access.
 
 ### Client-Side Security
 
-The client application:
-
-- Includes the JWT token in requests to protected endpoints
-- Verifies admin status with the server
-- Provides appropriate UI feedback for unauthorized actions
-- Uses a centralized API utility for consistent authentication
+- Includes JWT tokens in requests to protected endpoints.
+- Verifies admin status with the server.
+- Provides UI feedback for unauthorized actions.
+- Centralized API utility for consistent authentication.
 
 ### Protected Routes
 
-The following routes are protected:
+- `/api/admin/*` (Admin only).
+- POST, PUT, DELETE operations on `/api/news` (Admin only).
+- GET operations on `/api/news` (Public access).
 
-- All `/api/admin/*` routes (admin only)
-- POST, PUT, DELETE operations on `/api/news` (admin only)
-- GET operations on `/api/news` (public access)
+## Project Structure
 
-## Development
+### Client (`klubbsida-klient`)
 
-### Server
+- Built with React and Vite.
+- Tailwind CSS for styling.
+- Organized into components, pages, and utilities.
+
+### Server (`klubbsida-server`)
+
+- Node.js and Express.js backend.
+- MongoDB for database management.
+- Organized into routes, middleware, and models.
+
+## Development Setup
+
+### Prerequisites
+
+- Node.js and npm installed.
+- MongoDB instance running.
+
+### Steps
+
+#### Server
 
 ```bash
 cd klubbsida-server
@@ -63,7 +78,7 @@ npm install
 npm run dev
 ```
 
-### Client
+#### Client
 
 ```bash
 cd klubbsida-klient
@@ -71,7 +86,7 @@ npm install
 npm run dev
 ```
 
-### Testing
+#### Testing
 
 ```bash
 cd klubbsida-server
@@ -98,3 +113,7 @@ VITE_AUTH0_DOMAIN=your_auth0_domain
 VITE_AUTH0_CLIENT_ID=your_auth0_client_id
 VITE_API_URL=http://localhost:5000/api
 ```
+
+## License
+
+This project is licensed under the terms of the [MIT License](./LICENSE).
