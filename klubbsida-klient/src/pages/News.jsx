@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { PropTypes } from 'prop-types';
 import React from 'react';
 import Newsblock from '../components/Newsblock';
+import NewsListColumn from '../components/NewsListColumn';
 import { useEffect } from 'react';
 import { useApi } from '../utils/api';
 
@@ -50,6 +51,8 @@ export default function News(
             </div>
             ))}
         </div>
+        {/* NewsListColumn for the rest of the news */}
+        <NewsListColumn news={news.slice(3)} />
         </div>
         </>
     )

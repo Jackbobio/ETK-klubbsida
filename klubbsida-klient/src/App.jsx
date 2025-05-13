@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Homepage from './pages/Homepage'
 import About from './pages/Aboutus'
-import Membership from './pages/Membership'
+import Prices from './pages/Prices'
 import Minasidor from './pages/Mypages'
 import News from './pages/News'
 import ArticlePage from './pages/ArticlePage'
@@ -23,7 +23,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Homepage />}></Route>
           <Route path="/Omoss" element={<About />}></Route>
-          <Route path="/Medlemskap" element={<Membership />}></Route>     
+          <Route path="/Priser" element={<Prices />}></Route>     
           <Route path="/Minasidor" element={<Minasidor />}></Route>   
           <Route path="/Nyheter" element={<News />}></Route>
           <Route path="/Artikel/:id" element={<ArticlePage />}></Route>

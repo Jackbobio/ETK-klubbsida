@@ -12,7 +12,7 @@ export default function Navbar() {
             <div className="flex justify-between items-center">
                 <div>
                     {isAuthenticated ? (
-                        <Link to="/Minasidor" className="bg-teal-700 p-2 rounded text-sm sm:text-base whitespace-nowrap">Mina sidor</Link>
+                        <Link to="/Minasidor" className="bg-teal-700 p-2 text-sm sm:text-base whitespace-nowrap">Mina sidor</Link>
                     ) : (
                         <h3 className="text-sm sm:text-base md:text-lg max-w-[180px] sm:max-w-none leading-tight whitespace-normal">Välkommen till Ellagårds tennisklubb</h3>
                     )}
@@ -33,7 +33,7 @@ export default function Navbar() {
                         <Link to="/" className="text-sm md:text-base">Hem</Link>
                         <Link to="/Nyheter" className="text-sm md:text-base">Nyheter</Link>
                         <Link to="/Omoss" className="text-sm md:text-base">Om oss</Link>
-                        <Link to="/Medlemskap" className="text-sm md:text-base">Medlemskap</Link>
+                        <Link to="/Priser" className="text-sm md:text-base">Priser</Link>
                     </nav>
                     <AuthButtons />
                 </div>
