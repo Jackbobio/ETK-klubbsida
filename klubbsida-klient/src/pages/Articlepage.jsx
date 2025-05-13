@@ -33,11 +33,23 @@ export default function ArticlePage() {
   }
 
   return (
-    <div className="p-4">
-      <h1 className="text-4xl font-bold mb-4">{article.title}</h1>
-      <img src={article.coverpage} alt={article.title} className="w-full h-auto mb-4" />
-      <p className="text-gray-600 mb-4">{new Date(article.date).toLocaleDateString()}</p>
-      <p className="text-lg">{article.content}</p>
+    <div className="max-w-4xl mx-auto p-4 sm:p-6 bg-white shadow-lg font-bodoni h-lvh">
+      <h1 className="text-2xl sm:text-4xl font-bold mb-4 sm:mb-6 text-gray-800 text-center">
+        {article.title}
+      </h1>
+      <img
+        src={article.contentImage}
+        alt={article.title}
+        className="w-full h-auto max-w-sm sm:max-w-lg shadow-md mb-4 sm:mb-6 mx-auto"
+      />
+      <p className="text-gray-500 text-xs sm:text-sm mb-4 text-center">
+        Publicerad: {new Date(article.date).toLocaleDateString()}
+      </p>
+      <div className="text-base sm:text-lg text-gray-700 leading-relaxed space-y-4 break-words">
+        {article.content.split('\n').map((paragraph, index) => (
+          <p key={index}>{paragraph}</p>
+        ))}
+      </div>
     </div>
   );
 }

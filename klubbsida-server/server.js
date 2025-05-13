@@ -13,7 +13,12 @@ const jwtCheck = require('./middleware/jwtCheck');
 const checkAdminRole = require('./middleware/roleCheck');
 const logRequest = require('./mock/logRequest');
 
-app.use(cors());
+app.use(cors(
+  {
+    origin: process.env.CLIENT_URL,
+    credentials: true,
+  }
+));
 app.use(express.json({ limit: '50mb' })); // Increase the limit to 50mb
 app.use(express.urlencoded({ limit: '50mb', extended: true })); // Increase the limit to 50mb
 app.use('/api/news', newsRoutes);

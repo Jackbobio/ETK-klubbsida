@@ -5,3 +5,7 @@
     --font-bodoni: 'Bodoni Moda', sans-serif;
     --color-jakob: #0a5268
 }
+
+body {
+    min-width: 320px;
+}
