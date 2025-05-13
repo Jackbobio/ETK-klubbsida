@@ -45,6 +45,7 @@ export default function News(
                     date={item.date}
                     title={item.title}
                     link={item.link} 
+                    id={item._id}
                 />
             </div>
             ))}

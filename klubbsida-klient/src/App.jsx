@@ -5,8 +5,10 @@ import About from './pages/Aboutus'
 import Membership from './pages/Membership'
 import Minasidor from './pages/Mypages'
 import News from './pages/News'
+import ArticlePage from './pages/ArticlePage'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+
 
 import './App.css'
 
@@ -15,7 +17,7 @@ function App() {
 
   return (
     <>
-      <Router basename='/ETK-klubbsida'>
+      <Router basename='/ETK-klubbsida/'>
         <Navbar />
         <div className="min-h-screen flex flex-col">
         <Routes>
@@ -24,6 +26,9 @@ function App() {
           <Route path="/Medlemskap" element={<Membership />}></Route>     
           <Route path="/Minasidor" element={<Minasidor />}></Route>   
           <Route path="/Nyheter" element={<News />}></Route>
+          <Route path="/Artikel/:id" element={<ArticlePage />}></Route>
+          {/* Add more routes as needed */}
+          {/* 404 Not Found Route */}
           <Route path="*" element={<h1 className="text-4xl p-5">404: Not Found</h1>}></Route>   
         </Routes>
         </div>

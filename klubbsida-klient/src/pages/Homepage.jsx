@@ -63,6 +63,7 @@ export default function  Home() {
                             date={item.date}
                             title={item.title}
                             link={item.link} 
+                            id={item._id}
                         />
                     </div>
                 ))}

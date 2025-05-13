@@ -20,6 +20,22 @@ router.get('/', async (req, res) => {
     }
 });
 
+// Public route - Get a single news post by ID
+router.get('/:id', async (req, res) => {
+    try {
+        const newsPost = await News.findById(req.params.id);
+        if (!newsPost) {
+            return res.status(404).json({ 
+                error: "Not Found",
+                message: "News post not found" 
+            });
+        }
+        res.json(newsPost);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
+
 // Protected route - Create a new news post (admin only)
 router.post('/', jwtCheck, checkAdminRole, async (req, res) => {
     const { title, content, coverpage, contentImage } = req.body;
