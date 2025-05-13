@@ -18,7 +18,7 @@ function App() {
       <Router basename='/ETK-klubbsida'>
         <Navbar />
         <div className="min-h-screen flex flex-col">
-        <Routes basename="/ETK-klubbsida">
+        <Routes>
           <Route path="/" element={<Homepage />}></Route>
           <Route path="/Omoss" element={<About />}></Route>
           <Route path="/Medlemskap" element={<Membership />}></Route>     
