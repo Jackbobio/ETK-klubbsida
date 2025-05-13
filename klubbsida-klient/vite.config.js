@@ -4,8 +4,8 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: '/ETK-klubbsida/',
   plugins: [
     tailwindcss(),
     react()],
-    base: '/ETK-klubbsida/',
 })

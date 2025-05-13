@@ -15,7 +15,7 @@ function App() {
 
   return (
     <>
-      <Router>
+      <Router basename='/ETK-klubbsida'>
         <Navbar />
         <div className="min-h-screen flex flex-col">
         <Routes>
