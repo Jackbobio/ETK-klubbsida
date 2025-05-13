@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { format } from 'date-fns';
+import { Link } from 'react-router-dom';
 
 export default function NewsblockSideImage({ coverImage, date, title, link, id }) {
     return (
@@ -9,9 +10,9 @@ export default function NewsblockSideImage({ coverImage, date, title, link, id }
                 <div className="text-xs text-gray-500 mb-1">{format(new Date(date), 'd-MM-y')}</div>
                 <div className="font-semibold text-lg truncate">{title}</div>
                 {id && (
-                    <a href={`/ETK-klubbsida/Artikel/${id}`} className="text-amber-700 text-sm" target="_blank" rel="noopener noreferrer">
+                    <Link to={`/Artikel/${id}`} className="text-amber-700 text-sm" target="_blank" rel="noopener noreferrer">
                         Läs mer
-                    </a>
+                    </Link>
                 )}
             </div>
             {coverImage && (

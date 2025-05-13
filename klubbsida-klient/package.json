@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://Jackbobio.github.io/ETK-klubbsida/",
+  "homepage": "https://madebyjakob.github.io/ETK-klubbsida/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

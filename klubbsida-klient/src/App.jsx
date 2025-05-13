@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { HashRouter as Router, Routes, Route } from 'react-router-dom'
 import Homepage from './pages/Homepage'
 import About from './pages/Aboutus'
 import Prices from './pages/Prices'
@@ -17,7 +17,7 @@ function App() {
 
   return (
     <>
-      <Router basename='/ETK-klubbsida/'>
+      <Router>
         <Navbar />
         <div className="min-h-screen flex flex-col">
         <Routes>
