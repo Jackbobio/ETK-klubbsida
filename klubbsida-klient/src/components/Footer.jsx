@@ -13,9 +13,7 @@ export default function Footer() {
                 
                 <div className="flex flex-col items-center md:items-start">
                     <h3 className="text-lg md:text-xl pb-2 md:pb-3">Följ oss på sociala medier:</h3>
-                    <a href="#" className="text-white hover:text-gray-400 pl-0 md:pl-2 pb-1">Facebook</a>
-                    <a href="#" className="text-white hover:text-gray-400 pl-0 md:pl-2 pb-1">Twitter</a>
-                    <a href="#" className="text-white hover:text-gray-400 pl-0 md:pl-2 pb-1">Instagram</a>
+                    <a target='_blank' rel='noreferrer' href="https://www.instagram.com/etk.tennis/" className="text-white hover:text-gray-400 pl-0 md:pl-2 pb-1">Instagram</a>
                 </div>
             </div>
         </footer>

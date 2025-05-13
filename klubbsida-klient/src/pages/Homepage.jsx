@@ -38,7 +38,7 @@ export default function  Home() {
                 <h1 className="text-3xl md:text-7xl font-bold mb-4">Ellagårds Tennisklubb</h1>
                 <h3 className="text-base md:text-3xl">-Play tennis, change your life</h3>
                 <button className="bg-amber-400 text-gray-800 px-6 py-3 mt-8 hover:cursor-pointer hover:bg-amber-300 text-base md:text-lg"
-                    onClick={() => window.location.href="https://www.matchi.se/facilities/ellagardstk"}>BOKA BANA
+                    onClick={() => window.open("https://www.matchi.se/facilities/ellagardstk", "_blank")}>BOKA BANA
                 </button>
             </div>
         </div>
@@ -74,7 +74,9 @@ export default function  Home() {
             <div className="text-center relative z-10 text-white p-4 flex flex-col justify-center items-center h-full">
                 <h1 className="text-3xl md:text-7xl font-bold mb-4">Juniorträning</h1>
                 <h3 className="text-base md:text-3xl">För alla mellan 6-18 år</h3>
-                <button className="bg-amber-400 text-gray-800 px-6 py-3 mt-8 hover:cursor-pointer hover:bg-amber-300 text-base md:text-lg">ANMÄL HÄR</button>
+                <button className="bg-amber-400 text-gray-800 px-6 py-3 mt-8 hover:cursor-pointer hover:bg-amber-300 text-base md:text-lg"
+                onClick={() => window.open("https://www.matchi.se/facilities/ellagardstk", "_blank")}>ANMÄL HÄR
+                </button>
             </div>
         </div>
     </main>
