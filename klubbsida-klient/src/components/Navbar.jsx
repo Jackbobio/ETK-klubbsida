@@ -17,6 +17,14 @@ export default function Navbar() {
                         <h3 className="text-sm sm:text-base md:text-lg max-w-[180px] sm:max-w-none leading-tight whitespace-normal">Välkommen till Ellagårds tennisklubb</h3>
                     )}
                 </div>
+                {/* Center logo */}
+                <div className='flex justify-center items-center'>
+                    <img 
+                        src="/images/ETK-logo-blue.svg"
+                        alt="ETK Logga" 
+                        className='h-10 sm:h-12'
+                    />
+                </div>
                 {/* Hamburger menu button */}
                 <button
                     className="sm:hidden flex flex-col justify-center items-center ml-2"
