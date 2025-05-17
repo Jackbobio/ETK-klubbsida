@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 import { useApi } from '../utils/api';
 import Newsblock from '../components/Newsblock';
 import AOS from 'aos';
-import { motion } from 'motion/react';
 
 export default function  Home() {
     const { get } = useApi();
@@ -43,7 +42,7 @@ export default function  Home() {
                 <h1 className="text-3xl md:text-7xl font-bold mb-4">Ellagårds Tennisklubb</h1>
                 <h3 className="text-base md:text-3xl">
                 </h3>
-                <button className="bg-amber-400 text-gray-800 px-6 py-3 mt-8 cursor-pointer transition-transform duration-200 hover:scale-105 hover:cursor-pointer hover:bg-amber-300 text-base md:text-lg"
+                <button className="bg-amber-400 text-gray-800 px-6 py-3 mt-8 cursor-pointer transition-transform duration-200 hover:scale-105 hover:cursor-pointer text-base md:text-lg"
                     onClick={() => window.open("https://www.matchi.se/facilities/ellagardstk", "_blank")}>BOKA BANA
                 </button>
             </div>
@@ -61,7 +60,7 @@ export default function  Home() {
         ) : error ? (
             <div className="text-center text-red-500 text-lg">{error}</div>
         ) : (
-            <div data-aos="fade-right" className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10 pt-5">
+            <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10 pt-5">
                 {news.slice(0,3).map((item, index) => (
                     <div key={index} className="w-full max-w-xs md:max-w-none">
                         <Newsblock
@@ -70,6 +69,7 @@ export default function  Home() {
                             title={item.title}
                             link={item.link} 
                             id={item._id}
+                            aos="fade-right"
                         />
                     </div>
                 ))}
@@ -80,7 +80,7 @@ export default function  Home() {
             <div className="text-center relative z-10 text-white p-4 flex flex-col justify-center items-center h-full">
                 <h1 className="text-3xl md:text-7xl font-bold mb-4">Juniorträning</h1>
                 <h3 className="text-base md:text-3xl">För alla mellan 6-18 år</h3>
-                <button className="bg-amber-400 text-gray-800 px-6 py-3 mt-8 hover:cursor-pointer cursor-pointer transition-transform duration-200 hover:scale-105 hover:bg-amber-300 text-base md:text-lg"
+                <button className="bg-amber-400 text-gray-800 px-6 py-3 mt-8 hover:cursor-pointer cursor-pointer transition-transform duration-200 hover:scale-105  text-base md:text-lg"
                 onClick={() => window.open("https://www.matchi.se/facilities/ellagardstk", "_blank")}>ANMÄL HÄR
                 </button>
             </div>

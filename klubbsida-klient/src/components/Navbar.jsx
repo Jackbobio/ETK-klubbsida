@@ -23,7 +23,7 @@ export default function Navbar() {
                 
                 <div>
                     {isAuthenticated ? (
-                        <Link to="/Minasidor" className="bg-teal-700 p-2 text-sm sm:text-base whitespace-nowrap">Mina sidor</Link>
+                        <Link to="/Minasidor" className="bg-teal-700 p-2 text-sm sm:text-base whitespace-nowrap transition-transform duration-200 hover:scale-105">Mina sidor</Link>
                     ) : (
                         <h3 className="text-sm sm:text-base md:text-lg max-w-[180px] sm:max-w-none leading-tight whitespace-normal">Välkommen till Ellagårds tennisklubb</h3>
                     )}

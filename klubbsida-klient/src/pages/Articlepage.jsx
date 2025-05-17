@@ -102,7 +102,7 @@ export default function ArticlePage() {
   }
 
   return (
-    <div className="max-w-screen mx-auto p-4 sm:p-6 bg-white shadow-lg font-bodoni min-h-screen">
+    <div className="self-center items-center max-w-5xl x-auto p-4 sm:p-6 bg-white shadow-lg font-bodoni min-h-screen">
       <h1 className="text-3xl sm:text-4xl font-bold mb-4 sm:mb-6 text-gray-800 text-center">
         {article.title}
       </h1>
