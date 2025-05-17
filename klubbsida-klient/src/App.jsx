@@ -10,6 +10,7 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 
 
+import 'aos/dist/aos.css';
 import './App.css'
 
 function App() {

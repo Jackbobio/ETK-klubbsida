@@ -132,7 +132,7 @@ export default function AdminPanel() {
                 loading={loading} 
             />
             
-            <div className="flex flex-row gap-x-10 w-full max-w-4xl">
+            <div className="flex flex-col sm:flex-row gap-x-10 w-full max-w-4xl">
             <NewsForm 
                 newsForm={newsForm}
                 setNewsForm={setNewsForm}
