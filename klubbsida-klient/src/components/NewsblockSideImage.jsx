@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 export default function NewsblockSideImage({ coverImage, date, title, link, id }) {
     return (
-        <div className="flex items-center border rounded-lg p-3 gap-4 max-h-[160px] overflow-hidden bg-white shadow-sm">
+        <div className="flex items-center border rounded-lg p-3 gap-4 max-h-[160px] overflow-hidden bg-white transition-transform duration-300 hover:scale-105 hover:shadow-lg">
             <div className="flex-1 min-w-0">
                 <div className="text-xs text-gray-500 mb-1">{format(new Date(date), 'd-MM-y')}</div>
                 <div className="font-semibold text-lg truncate">{title}</div>
