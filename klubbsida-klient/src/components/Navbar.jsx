@@ -62,7 +62,7 @@ export default function Navbar() {
                     <Link to="/" className="text-base" onClick={() => setMenuOpen(false)}>Hem</Link>
                     <Link to="/Nyheter" className="text-base" onClick={() => setMenuOpen(false)}>Nyheter</Link>
                     <Link to="/Omoss" className="text-base" onClick={() => setMenuOpen(false)}>Om oss</Link>
-                    <Link to="/Medlemskap" className="text-base" onClick={() => setMenuOpen(false)}>Medlemskap</Link>
+                    <Link to="/Priser" className="text-base" onClick={() => setMenuOpen(false)}>Priser</Link>
                 </nav>
                 <div className="mt-2 px-1 pb-2">
                     <AuthButtons />

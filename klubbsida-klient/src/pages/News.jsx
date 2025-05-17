@@ -38,7 +38,7 @@ export default function News(
         <>
         <div className="font-bodoni">
         <h1 className='text-center text-5xl font-semibold p-5'>Senaste Nyheterna</h1>
-        <div className="flex flex-row items-center justify-between gap-5">
+        <div className="flex flex-col p-8 sm:p-0 sm:flex-row items-center justify-between gap-5">
             {news.slice(0,3).map((item, index) => (
             <div key={index} className="">
                 <Newsblock
